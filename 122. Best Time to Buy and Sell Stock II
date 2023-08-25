@@ -1,0 +1,47 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        int maxPrice = 0;
+        int sumPrice = 0;
+
+        if(prices.length == 2){
+            
+            if(prices[0] < prices[1]){
+                sumPrice = prices[1] - prices[0];
+                
+            }
+        }
+        else{
+            
+            for(int i= prices.length-1; i>=1; i--){
+
+                if(prices[i] >= maxPrice){
+
+                    maxPrice = prices[i];
+                }
+
+                else{
+
+                    if((prices[i] > prices[i-1])){
+
+                        continue;
+                    }
+                    else{
+                        sumPrice = sumPrice + (maxPrice - prices[i]);
+                        maxPrice = 0;    
+                    }
+
+                    
+                }
+
+                System.out.println(i+" | "+sumPrice);
+
+            }
+            if(maxPrice > prices[0]){
+                sumPrice = sumPrice + (maxPrice - prices[0]);
+            }
+        
+        }
+        return sumPrice;
+
+    }
+}
